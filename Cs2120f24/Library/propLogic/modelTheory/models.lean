@@ -1,8 +1,4 @@
-import Cs2120f24.Lectures.«02_prop_logic».formal.properties
-import Cs2120f24.Lectures.«02_prop_logic».formal.interpretation
-import Cs2120f24.Lectures.«02_prop_logic».formal.semantics
-import Cs2120f24.Lectures.«02_prop_logic».formal.truth_table
-import Cs2120f24.Lectures.«02_prop_logic».formal.utilities
+import Cs2120f24.Library.propLogic.modelTheory.properties
 
 namespace cs2120f24
 
@@ -27,7 +23,7 @@ def findModels (e : PLExpr) : List BoolInterp :=
 
 /-!
 Finds all models, if any, and returns either none, if there
-wasn't one, or some m, where m is firstin the returned list
+wasn't one, or some m, where m is first in the returned list
 of models.
 -/
 def findModel :  PLExpr → Option BoolInterp
@@ -36,16 +32,5 @@ def findModel :  PLExpr → Option BoolInterp
   match ms with
   | [] => none
   | h::_ => h
-
-/-
-COUNTEREXAMPLES
-
-We return all counterexamples, or one if there was one, for
-any given expression. These operations find models of the negation
-of the given expression, which amount to counterexamples for it.
--/
-
-def findCounterexamples (e : PLExpr) : List BoolInterp := findModels ¬e
-def findCounterexample (e : PLExpr) : Option BoolInterp := findModel ¬e
 
 end cs2120f24

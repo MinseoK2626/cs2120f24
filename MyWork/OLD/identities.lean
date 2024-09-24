@@ -1,4 +1,4 @@
-import «Cs2120f24».Lectures.«02_prop_logic».formal.syntax
+import «Cs2120f24».Lectures.«02_prop_logic».formal.properties
 
 namespace cs2120f24
 
