@@ -215,6 +215,54 @@ def mul : Nat → Nat → Nat
 | n, (Nat.succ m') => add n (mul n m')
 -- effect is to iterate addition of n to zero m times
 
+def exp : Nat → Nat → Nat
+| n, 0 => 1
+| n, (m'+1) => n * exp n m'
+
+def subt : Nat → Nat → Nat
+|n, 0 => n
+|0, m => 0
+|(n'+1), (m' + 1) => subt (n') (m')
+#eval! subt 5 3
+#eval! subt 2 5
+
+def le : Nat → Nat → Bool
+| 0, m => true
+| (n' + 1), 0 => false
+| (n' + 1), (m' + 1) => le n' m'
+
+def gt : Nat → Nat → Bool
+| n, m => ¬ le n m
+
+#eval! le 2 3
+#eval! gt 1 2
+
+def eq : Nat → Nat → Bool
+| 0, (m'+1) => false
+|(n'+1), 0 => false
+| 0, 0 => true
+|(n'+1), (m'+1) => eq n' m'
+
+#eval! eq 1 2
+#eval! eq 2 2
+
+
+def lt : Nat → Nat → Bool
+| n, m => le n m && ¬eq n m
+
+#eval lt 5 5
+#eval lt 5 6
+#eval lt 7 6
+#eval lt 0 1
+
+def ge : Nat → Nat → Bool
+| n, m => eq n m || gt n m 
+
+#eval! exp 10 5
+
+#reduce exp 5 0
+
+
 /-!
 ### Binary Relations (Boolean Predicate Functions)
 
